@@ -139,7 +139,7 @@
           state.outBlob = blob;
           $("download").classList.add("show");
           btn.disabled = false; btn.textContent = "Convert again";
-          logRow("ok","fertig", (blob.size/1048576).toFixed(2)+" MB ready");
+          logRow("ok","done", (blob.size/1048576).toFixed(2)+" MB ready");
         });
     }
 
