@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html data-bs-theme="light" lang="de">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Agent Native - Static Site Converter</title>
+    <meta name="description" content="Upload your website's ZIP. This tool creates a clean, structured version for AI Agents (Clean-HTML + JSON-LD and Markdown), a llms.txt-Index and finished server configs per page - packs everything together with your original page to a new ZIP.
+">
+    <script type="application/ld+json">
+        {
+            "@context": "http://schema.org",
+            "@type": "WebSite",
+            "name": "Agent-Native Web Tool",
+            "url": "https://tool.agent-native.site"
+        }
+    </script>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+    <div class="wrap">
+        <header>
+            <div class="brand">
+                <div class="glyph"><span>A</span></div>
+                <div>
+                    <h1>Agent Native</h1>
+                    <p>static-site&nbsp;converter</p>
+                </div>
+            </div>
+            <div class="privacy"><span class="dot"></span><span>Runs fully in browser - nothing is being saved</span></div>
+        </header>
+        <section class="intro">
+            <h2>Static website → agent-native</h2>
+            <p>Upload your website's ZIP. This tool creates a clean, structured version for AI Agents (Clean-HTML + JSON-LD and Markdown), a&nbsp;<code>llms.txt</code>-Index and finished server configs per page - packs everything together with your original page to a new ZIP.<br><br></p>
+        </section>
+        <div id="drop" class="drop" tabindex="0" role="button" aria-label="ZIP-Datei auswählen">
+            <div class="icon"><span>↓</span></div>
+            <p class="big">Drop your ZIP or click here</p>
+            <p class="sub">Expects a ZIP with html files. Max. file size ~50 MB.</p><input type="file" accept=".zip,application/zip" id="file">
+        </div>
+        <div class="grid">
+            <aside class="panel">
+                <h3>OPTIONS</h3>
+                <div class="body"><label class="opt"><input type="checkbox" checked="" id="opt_html"><span class="t">Clean-HTML-Mirror<small>Structured HTML + JSON-LD in /agent/</small></span></label><label class="opt"><input type="checkbox" checked="" id="opt_md"><span class="t">Markdown-Version<small>.md per page, token-efficient for LLMs</small></span></label><label class="opt"><input type="checkbox" checked="" id="opt_llms"><span class="t">llms.txt + llms-full.txt<small>Machine-readable index &amp; text</small></span></label><label class="opt"><input type="checkbox" checked="" id="opt_cfg"><span class="t">Server-Config<small>.htaccess + nginx-Snippet for UA-Routing</small></span></label><label class="opt"><input type="checkbox" checked="" id="opt_inject"><span class="t">Insert alternate-links<small>&lt;link rel="alternate"&gt; in original pages</small></span></label>
+                    <div class="ua-block" style="margin-top:12px;"><label for="ua">Agent-User-Agents</label><textarea id="ua" spellcheck="false"></textarea></div><button class="btn" id="convert" style="margin-top:12px;">Choose ZIP first</button>
+                </div>
+            </aside>
+            <main class="panel">
+                <h3>RESULT</h3>
+                <div class="body results">
+                    <div id="empty" class="empty"><span>Nothing has been converted. Choose your options on the left and upload your ZIP.</span></div>
+                    <div id="report" hidden="">
+                        <div class="stats">
+                            <div class="stat"><b id="s_pages">0</b><span>Pages</span></div>
+                            <div class="stat"><b id="s_md">0</b><span>Markdown</span></div>
+                            <div class="stat"><b id="s_assets">0</b><span>Assets copied</span></div>
+                            <div class="stat"><b id="s_words">0</b><span>Words detected</span></div>
+                        </div>
+                        <div id="log" class="log"></div>
+                        <div id="download" class="download"><button class="btn" id="dl" style="width:auto;">Umgewandeltes ZIP herunterladen</button><button class="btn ghost" id="dl_llms" style="width:auto;">Nur llms.txt ansehen</button></div>
+                    </div>
+                </div>
+            </main>
+        </div>
+        <div class="note"><b>Important - static vs. runtime:</b><span> Live agent detection cannot be performed based on files alone. That's why the tool generates a&nbsp;</span><code>/agent/</code><span>-mirror </span><i>and</i><span>&nbsp;server-configs that redirect known agent user-agents to it on your sever. The mirror displays the same content as the original page, but in a machine-readable format - the canonical tag points to the original URL. Any differing content would constitute deceptive cloaking. Additionally, user-agent detection can be spoofed and is never complete.</span></div>
+    </div>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/app.js"></script>
+    <script src="assets/js/jszip.min.js"></script>
+</body>
+
+</html>
