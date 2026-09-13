@@ -431,3 +431,7 @@ code {
   color: var(--ink);
 }
 
+.header-logo {
+  width: 80px;
+}
+
